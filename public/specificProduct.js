@@ -125,22 +125,100 @@ document.querySelector(".add-to-bag").addEventListener("click", function () {
   setTimeout(() => {
     this.classList.remove("clicked")
     this.textContent = "ADDED TO BAG"
+    showPopup()
     setTimeout(() => {
       this.textContent = "ADD TO BAG"
-    }, 2000)
+    }, 1000)
   }, 300)
 })
 
-document.querySelector(".wishlist").addEventListener("click", function () {
-  const icon = this.querySelector("i")
-  if (icon.classList.contains("far")) {
-    icon.classList.remove("far")
-    icon.classList.add("fas")
-    this.classList.add("active")
-  } else {
-    icon.classList.remove("fas")
-    icon.classList.add("far")
-    this.classList.remove("active")
-  }
-})
 
+const popupOverlay = document.getElementById('popupOverlay');
+        const closePopup = document.getElementById('closePopup');
+        const backToShoppingBtn = document.getElementById('backToShoppingBtn');
+        const viewBagBtn = document.getElementById('viewBagBtn');
+
+        function showPopup() {
+            popupOverlay.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function hidePopup() {
+            popupOverlay.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+        function backToShop() {
+          popupOverlay.classList.remove('active');
+          document.body.style.overflow = '';
+          window.location.href = "allProducts.html"
+      }
+        closePopup.addEventListener('click', hidePopup);
+        backToShoppingBtn.addEventListener('click', backToShop);
+        
+        viewBagBtn.addEventListener('click', () => {
+            hidePopup();
+            window.location.href = 'cart.html';
+        });
+        popupOverlay.addEventListener('click', (e) => {
+            if (e.target === popupOverlay) {
+                hidePopup();
+            }
+        });
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && popupOverlay.classList.contains('active')) {
+                hidePopup();
+            }
+        });
+
+
+
+        document.addEventListener("DOMContentLoaded", () => {
+  
+          const menuToggle = document.querySelector(".menu-toggle")
+          const navbar = document.querySelector(".navbar")
+        
+          if (menuToggle) {
+            menuToggle.addEventListener("click", () => {
+              navbar.classList.toggle("mobile-active")
+            })
+          }
+        })
+        
+        document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+          anchor.addEventListener("click", function (e) {
+            e.preventDefault()
+        
+            document.querySelector(this.getAttribute("href")).scrollIntoView({
+              behavior: "smooth",
+            })
+          })
+        })
+        
+        document.addEventListener('DOMContentLoaded', function() {
+          const menuToggle = document.getElementById('menuToggle');
+          const navContainer = document.getElementById('navContainer');
+          
+          menuToggle.addEventListener('click', function() {
+            menuToggle.classList.toggle('active');
+            navContainer.classList.toggle('active');
+          });
+          
+          const navLinks = document.querySelectorAll('.nav-container a');
+          navLinks.forEach(link => {
+            link.addEventListener('click', function() {
+              menuToggle.classList.remove('active');
+              navContainer.classList.remove('active');
+            });
+          });
+      
+          document.addEventListener('click', function(event) {
+            const isClickInsideNav = navContainer.contains(event.target);
+            const isClickOnToggle = menuToggle.contains(event.target);
+            
+            if (!isClickInsideNav && !isClickOnToggle && navContainer.classList.contains('active')) {
+              menuToggle.classList.remove('active');
+              navContainer.classList.remove('active');
+            }
+          });
+        });

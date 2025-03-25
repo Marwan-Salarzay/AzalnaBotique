@@ -9,15 +9,31 @@ import categoryRoutes from './routes/categoryRoute.js'
 import checkoutRoutes from './routes/checkoutRoute.js'
 import specificRoutes from './routes/specificRoute.js'
 import cors from 'cors'
-
+import compression from 'compression';
+import dotenv from 'dotenv'
+dotenv.config()
 const app = express();
-const port = 3000;
-app.options('*',cors())
+const port = process.env.PORT;
+app.options('*',cors());
 
-app.use(express.json())
+app.use((req, res, next) => {
+    res.setHeader("Strict-Transport-Security", "max-age=31536000; includeSubDomains");
+    res.setHeader("X-Content-Type-Options", "nosniff");
+    res.setHeader("X-Frame-Options", "DENY");
+    res.setHeader("X-XSS-Protection", "1; mode=block");
+    res.setHeader("Referrer-Policy", "no-referrer");
+    res.setHeader("Permissions-Policy", "geolocation=(self), microphone=()");
+    res.setHeader("Cache-Control", "no-store, no-cache, must-revalidate, proxy-revalidate");
+    res.setHeader("Pragma", "no-cache");
+    res.setHeader("Expires", "0");
+    next();
+});
+
+app.use(compression());
+app.use(express.json());
 app.use(express.static('public'));
-app.use(bodyParser.json())
-app.use(morgan('tiny'))
+app.use(bodyParser.json());
+app.use(morgan('tiny'));
 
 app.use(`/api`,productRoutes)
 app.use(`/api`,orderRoutes)
@@ -27,7 +43,7 @@ app.use(`/api`,checkoutRoutes)
 app.use(`/api`,specificRoutes)
 
 
-await mongoose.connect('mongodb+srv://eshop-user:Camaro9_11@cluster0.x2c5b.mongodb.net/eshop-database?retryWrites=true&w=majority&appName=Cluster0',)
+await mongoose.connect(process.env.connection_string,)
 .then(()=>{
   console.log('done connecting');
 }).catch((err)=>{

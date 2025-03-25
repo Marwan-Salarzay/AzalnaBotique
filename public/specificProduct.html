@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Embroidered Paper Silk Kurta</title>
     <link rel="stylesheet" href="specificProduct.css?v=1" />
-    <link rel="stylesheet" href="style.css?v=1" />
+    <!-- <link rel="stylesheet" href="style.css?v=1" /> -->
     <link rel="stylesheet" href="footer.css?v=1" />
     
     <link
@@ -76,16 +76,9 @@
                   </span>
                 </li>
                 <li>
-                  <span class="underline-effect">
-                    <img src="/svg/whishlist.svg" alt="Wishlist" height="28px" width="28px" />
-                    <span class="nav-text">Wishlist</span>
-                  </span>
-                </li>
-                <li>
                   <a class="underline-effect" href="cart.html">
                     <div class="cart-icon-container">
                       <img src="/svg/cart.svg" alt="Cart" height="28px" width="28px" />
-                      <!-- <div id="cart-badge" class="cart-badge">0</div> -->
                     </div>
                     <span class="nav-text">Cart</span>
                   </a>
@@ -219,6 +212,27 @@
         </div>
       </div>
     </div>
+
+    <div class="popup-overlay" id="popupOverlay">
+      <div class="popup-container">
+          <button class="close-button" id="closePopup">×</button>
+          
+          <div class="success-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+              </svg>
+          </div>
+          
+          <h2 class="popup-title">Item Added to Bag</h2>
+          <p class="popup-message">Your item has been successfully added to your shopping bag.</p>
+          
+          <div class="popup-buttons">
+              <button class="popup-button secondary-button" id="backToShoppingBtn">Back to Shopping</button>
+              <button class="popup-button primary-button" id="viewBagBtn">View Bag</button>
+          </div>
+      </div>
+  </div>
+
     <footer>
       <div class="footer-container">
         <div class="footer-logo">

@@ -110,7 +110,122 @@
         </div>
     </div>
 
+    <!-- Order Summary Popup -->
+    <div class="overlay" id="orderSummaryOverlay">
+        <div class="order-summary-popup">
+            <div class="order-summary-header">
+                <div class="header-content">
+                    <div class="logo-container">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
+                            <line x1="3" y1="6" x2="21" y2="6"></line>
+                            <path d="M16 10a4 4 0 0 1-8 0"></path>
+                        </svg>
+                    </div>
+                    <h2>Order Confirmation</h2>
+                </div>
+                <button class="close-btn" id="closeOrderSummary">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="18" y1="6" x2="6" y2="18"></line>
+                        <line x1="6" y1="6" x2="18" y2="18"></line>
+                    </svg>
+                </button>
+            </div>
+            
+            <div class="order-summary-content">
+                <div class="success-message">
+                    <div class="success-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                            <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                        </svg>
+                    </div>
+                    <h3>Thank You For Your Order!</h3>
+                    <p class="confirmation-message">Your order has been confirmed and will be shipped soon.</p>
+                </div>
+                
+                <div class="order-details">
+                    <div class="order-info-box">
+                        <div class="order-info-row">
+                            <span class="info-label">Order Number:</span>
+                            <span class="info-value" id="orderNumber">ORD-XXXX-XXXX</span>
+                        </div>
+                        <div class="order-info-row">
+                            <span class="info-label">Order Date:</span>
+                            <span class="info-value" id="orderDate">March 24, 2025</span>
+                        </div>
+                        <div class="order-info-row">
+                            <span class="info-label">Payment Method:</span>
+                            <span class="info-value" id="paymentMethodDisplay">Cash on Delivery</span>
+                        </div>
+                        <div class="order-info-row">
+                            <span class="info-label">Estimated Delivery:</span>
+                            <span class="info-value" id="estimatedDelivery">April 1-5, 2025</span>
+                        </div>
+                    </div>
+                    
+                    <div class="order-section">
+                        <h4>Items Ordered</h4>
+                        <div class="items-container" id="orderedItems">
+                            
+                        </div>
+                    </div>
+                    
+                    <div class="order-section two-columns">
+                        <div class="column">
+                            <h4>Details / Shipping Address</h4>
+                            <div class="address-box" id="shippingAddressDisplay">
+                                
+                            </div>
+                        </div>
+                        <div class="column">
+                            <h4>Order Summary</h4>
+                            <div class="summary-box">
+                                <div class="summary-row">
+                                    <span><b>Subtotal</b></span>
+                                    <span id="subtotalDisplay">$0.00</span>
+                                </div>
+                                <div class="summary-row">
+                                    <span><b>FBR Tax</b></span>
+                                    <span id="fbrTaxDisplay">$0.00</span>
+                                </div>
+                                <div class="summary-row">
+                                    <span><b>Sales Tax</b></span>
+                                    <span id="salesTaxDisplay">$0.00</span>
+                                </div>
+                                <div class="summary-row total">
+                                    <span><b>Total</b></span>
+                                    <span id="totalDisplay">$0.00</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="order-summary-footer">
+                <div class="action-buttons">
+                    <button class="action-btn" id="printReceiptBtn">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="6 9 6 2 18 2 18 9"></polyline>
+                            <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path>
+                            <rect x="6" y="14" width="12" height="8"></rect>
+                        </svg>
+                        Print
+                    </button>
+                    <button class="action-btn" id="copyOrderNumberBtn">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                            <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                        </svg>
+                        Copy #
+                    </button>
+                </div>
+                <button class="continue-shopping-btn" id="continueShoppingBtn">Continue Shopping</button>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.0.0-rc.7/html2canvas.min.js"></script>
     <script src="checkout.js"></script>
-    <!-- <script src="thankyou.js"></script> -->
 </body>
 </html>

@@ -3,12 +3,11 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="shortcut icon" href="/images/cartFavi.png" type="image/x-icon" />
     <link rel="stylesheet" href="style.css?v=1" />
-    <link rel="stylesheet" href="cart.css?v=1" />
+    <link rel="stylesheet" href="slider.css?v=1" />
     <link rel="stylesheet" href="footer.css?v=1" />
-    <link rel="stylesheet" href="specificProduct.css?v=1">
-    <title>Cart</title>
+    
+    <title>Winter Collection</title>
   </head>
   <body>
     <header>
@@ -76,7 +75,6 @@
                   <a class="underline-effect" href="cart.html">
                     <div class="cart-icon-container">
                       <img src="/svg/cart.svg" alt="Cart" height="28px" width="28px" />
-                      <div id="cart-badge" class="cart-badge">0</div>
                     </div>
                     <span class="nav-text">Cart</span>
                   </a>
@@ -87,20 +85,28 @@
         </div>
       </nav>
     </header>
-    <br />
-    <div class="bagHeading relative flexCenter cartHeading">
-      <h2>YOUR CART</h2>
-      <img src="/svg/cart.svg" alt="" height="60px" width="60px" />
-    </div>
-    <div class="bagPageMain flexCenter">
-      <div class="bagContent">
-        
-      </div>
-      <div class="orderContainer flexColumn">
 
+    <section id="section3">
+      <div class="main flexCenter">
+        <ul class="container2 allClothes"></ul>
       </div>
-    </div>
-    <br /><br />
+    </section>
+    <blockquote
+      class="tiktok-embed"
+      cite="https://www.tiktok.com/@azalnaboutique"
+      data-unique-id="azalnaboutique"
+      data-embed-type="creator"
+      style="max-width: 780px; min-width: 288px"
+    >
+      <section>
+        <a
+          target="_blank"
+          href="https://www.tiktok.com/@azalnaboutique?refer=creator_embed"
+          >@azalnaboutique</a
+        >
+      </section>
+    </blockquote>
+
     <footer>
       <div class="footer-container">
         <div class="footer-logo">
@@ -119,16 +125,38 @@
           <h3>Contact Us</h3>
           <p>Email: azalnaBotique.com</p>
           <p>Phone: +1 (234) 567-8901</p>
-          <p>Address: Pakistan, Islamabad - F-11 / 3 </p>
+          <p>Address: Pakistan, Islamabad - F-11 / 3</p>
         </div>
         <div class="footer-social">
           <h3>Follow Us On:</h3>
           <ul class="flexCenter footerSocial">
-            <li><a href="#" target="_blank"><img src="/svg/facebook.svg" alt="Facebook"></a></li>
-            <li><a href="https://www.instagram.com/azalnaboutique?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank"><img src="/svg/isnta.svg" alt="Instagram"></a></li>
-            <li><a href="#" target="_blank"><img src="/svg/pinterest.svg" alt="Pinterest"></a></li>
-            <li><a href="#" target="_blank"><img src="/svg/linkedin.svg" alt="LinkedIn"></a></li>
-            <li><a href="#" target="_blank"><img src="/svg/tiktok.svg" alt="TikTok"></a></li>
+            <li>
+              <a href="#" target="_blank"
+                ><img src="/svg/facebook.svg" alt="Facebook"
+              /></a>
+            </li>
+            <li>
+              <a
+                href="https://www.instagram.com/azalnaboutique?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw=="
+                target="_blank"
+                ><img src="/svg/isnta.svg" alt="Instagram"
+              /></a>
+            </li>
+            <li>
+              <a href="#" target="_blank"
+                ><img src="/svg/pinterest.svg" alt="Pinterest"
+              /></a>
+            </li>
+            <li>
+              <a href="#" target="_blank"
+                ><img src="/svg/linkedin.svg" alt="LinkedIn"
+              /></a>
+            </li>
+            <li>
+              <a href="#" target="_blank"
+                ><img src="/svg/tiktok.svg" alt="TikTok"
+              /></a>
+            </li>
           </ul>
         </div>
       </div>
@@ -136,37 +164,7 @@
         <p>&copy; 2025 Azalna's Boutique. All rights reserved.</p>
       </div>
     </footer>
-
-    <script src="cart.js"></script>
-    <script>
-      document.addEventListener('DOMContentLoaded', function() {
-        const menuToggle = document.getElementById('menuToggle');
-        const navContainer = document.getElementById('navContainer');
-        
-        menuToggle.addEventListener('click', function() {
-          menuToggle.classList.toggle('active');
-          navContainer.classList.toggle('active');
-        });
-        
-        const navLinks = document.querySelectorAll('.nav-container a');
-        navLinks.forEach(link => {
-          link.addEventListener('click', function() {
-            menuToggle.classList.remove('active');
-            navContainer.classList.remove('active');
-          });
-        });
-        
-        document.addEventListener('click', function(event) {
-          const isClickInsideNav = navContainer.contains(event.target);
-          const isClickOnToggle = menuToggle.contains(event.target);
-          
-          if (!isClickInsideNav && !isClickOnToggle && navContainer.classList.contains('active')) {
-            menuToggle.classList.remove('active');
-            navContainer.classList.remove('active');
-          }
-        });
-      });
-    </script>
+    <script src="winters.js"></script>
+    <script async src="https://www.tiktok.com/embed.js"></script>
   </body>
 </html>
-

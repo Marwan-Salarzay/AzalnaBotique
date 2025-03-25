@@ -1,10 +1,25 @@
-document.querySelector('.newArrivals').addEventListener('onclick',()=>{
-  window.location.href = "/public/newArrivals.html"
+document.querySelector('.newArrivals').addEventListener('click',()=>{
+  window.location.href = "newArrivals.html"
 })
- 
+document.querySelector('.allCatalouge').addEventListener('click',()=>{
+  window.location.href = "allProducts.html"
+})
+
+document.querySelector('.summerCollection').addEventListener('click',()=>{
+  window.location.href = "summers.html"
+})
+
+document.querySelector('.partyCollection').addEventListener('click',()=>{
+  window.location.href = "partyWear.html"
+})
+
+document.querySelector('.winterCollection').addEventListener('click',()=>{
+  window.location.href = "winters.html"
+})
+
+
  document.addEventListener("DOMContentLoaded", () => {
   
-    // Mobile menu toggle
     const menuToggle = document.querySelector(".menu-toggle")
     const navbar = document.querySelector(".navbar")
   
@@ -25,7 +40,6 @@ document.querySelector('.newArrivals').addEventListener('onclick',()=>{
     })
   })
   
-  // Hamburger menu functionality
   document.addEventListener('DOMContentLoaded', function() {
     const menuToggle = document.getElementById('menuToggle');
     const navContainer = document.getElementById('navContainer');
@@ -35,7 +49,6 @@ document.querySelector('.newArrivals').addEventListener('onclick',()=>{
       navContainer.classList.toggle('active');
     });
     
-    // Close menu when clicking on a link
     const navLinks = document.querySelectorAll('.nav-container a');
     navLinks.forEach(link => {
       link.addEventListener('click', function() {
@@ -43,8 +56,7 @@ document.querySelector('.newArrivals').addEventListener('onclick',()=>{
         navContainer.classList.remove('active');
       });
     });
-    
-    // Close menu when clicking outside
+
     document.addEventListener('click', function(event) {
       const isClickInsideNav = navContainer.contains(event.target);
       const isClickOnToggle = menuToggle.contains(event.target);

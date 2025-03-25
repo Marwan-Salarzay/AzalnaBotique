@@ -8,7 +8,7 @@ if (localList) {
 }
 console.log(items)
 const salesTax = 800
-const FBRtax = 10
+const FBRtax = 0
 var totalPrice = 0
 
 function proceedToCheckout() {
