@@ -36,39 +36,12 @@ router.post("/checkout", async (req, res) => {
 
         res.status(201).json({ success: true, data: savedShipping });
 
+        await sendOrderEmail(email);
+
     } catch (error) {
         console.error("Error saving shipping data:", error);
         res.status(500).json({ success: false, message: "Internal Server Error", error: error.message });
     }
 });
-
-
-router.post("/process-order", async (req, res) => {
-    try {
-      const { orderData } = req.body
-  
-      if (!orderData || !orderData.formData || !orderData.items || !orderData.formData.email) {
-        return res.status(400).json({
-          success: false,
-          message: "Invalid order data. Please provide complete order information.",
-        })
-      }
-      const emailSent = await sendOrderEmail(orderData.formData.email, orderData)
-      res.status(201).json({
-        success: true,
-        message: "Order processed successfully",
-        emailStatus: emailSent ? "Email sent successfully" : "Failed to send email",
-      })
-
-    }
-     catch (error) {
-      console.error("Error processing order:", error)
-      res.status(500).json({
-        success: false,
-        message: "Internal Server Error",
-        error: error.message,
-      })
-    }
-  })
 
 export default router;

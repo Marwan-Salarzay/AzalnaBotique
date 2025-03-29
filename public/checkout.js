@@ -146,7 +146,7 @@
     
 //     continueBtn.addEventListener('click', hidePopup);
 
-document.addEventListener('DOMContentLoaded', function () {
+document.addEventListener('DOMContentLoaded', async function () {
     const form = document.getElementById('shipping-form');
     const inputs = form.querySelectorAll('input, select');
     const progressBar = document.querySelector('.progress');
@@ -231,6 +231,21 @@ document.addEventListener('DOMContentLoaded', function () {
             quantity:quantity,
             size:size 
         };
+
+        localStorage.setItem('orderData', JSON.stringify({
+            items: tempItems,
+            formData: formData,
+            subtotal: allItemsPrice,
+            FBRtax: FBRtax,
+            salesTax: salestax,
+            total: allItemsPrice + FBRtax + salestax,
+            orderId: generateOrderId(),
+            orderDate: new Date().toLocaleDateString('en-US', { 
+                year: 'numeric', 
+                month: 'long', 
+                day: 'numeric' 
+            }),
+        }));
         
 
         console.log("Collected Form Data:", formData); 
@@ -262,20 +277,9 @@ document.addEventListener('DOMContentLoaded', function () {
                 submitBtn.querySelector('.btn-text').textContent = 'Complete Order';
                 progressBar.style.width = '0%';
                 inputs.forEach(input => input.parentElement.classList.remove('focused'));
-                localStorage.setItem('orderData', JSON.stringify({
-                    items: tempItems,
-                    formData: formData,
-                    subtotal: allItemsPrice,
-                    FBRtax: FBRtax,
-                    salesTax: salestax,
-                    total: allItemsPrice + FBRtax + salestax,
-                    orderId: generateOrderId(),
-                    orderDate: new Date().toLocaleDateString('en-US', { 
-                        year: 'numeric', 
-                        month: 'long', 
-                        day: 'numeric' 
-                    }),
-                }));
+                
+
+
                 showOrderSummary();
             }, 2000);
 
@@ -322,7 +326,7 @@ document.addEventListener('DOMContentLoaded', function () {
         document.getElementById('orderDate').textContent = orderData.orderDate;
         document.getElementById('paymentMethodDisplay').textContent = orderData.formData.paymentMethod;
         
-        const deliveryDate = new Date();
+        let deliveryDate = new Date();
         deliveryDate.setDate(deliveryDate.getDate() + 7 + Math.floor(Math.random() * 4));
         const estimatedDelivery = deliveryDate.toLocaleDateString('en-US', { 
             month: 'long', 
@@ -385,17 +389,7 @@ document.addEventListener('DOMContentLoaded', function () {
         
         orderSummaryOverlay.classList.add('active');
     }
-    
-    function hideOrderSummary() {
-        orderSummaryOverlay.classList.remove('active');
-        localStorage.clear()
-        showPopup()
-    }
-    
-    function printReceipt() {
-        window.print();
-        
-    }
+   
     
     function copyOrderNumber() {
         const orderNumber = document.getElementById('orderNumber').textContent;
@@ -436,11 +430,19 @@ document.addEventListener('DOMContentLoaded', function () {
     }
     
     closeOrderSummaryBtn.addEventListener('click', hideOrderSummary);
-    continueShoppingBtn.addEventListener('click', function() {
-        hideOrderSummary();
-        localStorage.clear()
+    continueShoppingBtn.addEventListener('click', hideOrderSummary)
+
+    function hideOrderSummary() {
+        orderSummaryOverlay.classList.remove('active');
         showPopup()
-    });
+    }
+
+     
+    function printReceipt() {
+        window.print();
+        
+    }
+
     printReceiptBtn.addEventListener('click', printReceipt);
     copyOrderNumberBtn.addEventListener('click', copyOrderNumber);
 });
@@ -448,8 +450,10 @@ document.addEventListener('DOMContentLoaded', function () {
 const overlay = document.getElementById('thankYouOverlay');
 const continueBtn = document.getElementById('continueBtn');
 
-function hidePopup() {
+async function hidePopup() {
     overlay.classList.remove('active');
+    await processOrderFromLocalStorage()
+    localStorage.clear()
     window.location.href = "index.html"
 }
 
@@ -458,3 +462,39 @@ function showPopup() {
 }
 
 continueBtn.addEventListener('click', hidePopup);
+
+
+async function processOrderFromLocalStorage() {
+    let orderData = await JSON.parse(localStorage.getItem("orderData"))
+    try {
+      if (!orderData) {
+        console.error("No order data found in localStorage")
+        return
+      }
+      const response = await fetch("http://localhost:3000/api/process-order", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ orderData }),
+      })
+  
+      const result = await response.json()
+  
+      if (result.success) {
+        console.log("Order processed successfully:", result)
+
+        localStorage.removeItem("orderData")
+
+        alert("Your order has been placed successfully!")
+      } else {
+        console.error("Failed to process order:", result.message)
+        alert("There was an error processing your order. Please try again.")
+      }
+    } catch (error) {
+      console.error("Error sending order data:", error)
+      alert("There was an error processing your order. Please try again.")
+    }
+  }
+  
+  

@@ -58,7 +58,7 @@ function appendItems() {
     })
   }
   appendOrder()
-  updateCartBadge()
+  // updateCartBadge()
 }
 
 function appendOrder() {
@@ -159,21 +159,21 @@ function deleteItem(index) {
 document.addEventListener("DOMContentLoaded", appendItems)
 
 
-function updateCartBadge() {
-  const cartBadge = document.getElementById("cart-badge")
-  const localList = localStorage.getItem("mylist")
+// function updateCartBadge() {
+//   const cartBadge = document.getElementById("cart-badge")
+//   const localList = localStorage.getItem("mylist")
 
-  if (localList) {
-    const itms = JSON.parse(localList)
-    cartBadge.textContent = itms.length
-    cartBadge.style.display = itms.length > 0 ? "flex" : "none"
-  } else {
-    cartBadge.style.display = "none"
-  }
-}
+//   if (localList) {
+//     const itms = JSON.parse(localList)
+//     cartBadge.textContent = itms.length
+//     cartBadge.style.display = itms.length > 0 ? "flex" : "none"
+//   } else {
+//     cartBadge.style.display = "none"
+//   }
+// }
 
 document.addEventListener("DOMContentLoaded", () => {
-  updateCartBadge()
+  // updateCartBadge()
 
   window.addEventListener("storage", (e) => {
     if (e.key === "mylist") {
@@ -185,11 +185,11 @@ document.addEventListener("DOMContentLoaded", () => {
 const originalAppendItems = appendItems
 appendItems = () => {
   originalAppendItems()
-  updateCartBadge()
+  // updateCartBadge()
 }
 
 const originalDeleteItem = deleteItem
 deleteItem = (index) => {
   originalDeleteItem(index)
-  updateCartBadge()
+  // updateCartBadge()
 }

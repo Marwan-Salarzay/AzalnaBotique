@@ -1495,3 +1495,39 @@ li {
   }
 }
 
+
+
+
+
+.back-button {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: #333;
+  font-size: 18px;
+  font-weight: bold;
+  transition: transform 0.3s ease-in-out, color 0.3s;
+  background-color: rgb(228, 228, 228);
+  border-radius: 20px;
+  padding: 10px;
+}
+
+.back-button i {
+  font-size: 24px;
+  margin-right: 8px;
+  transition: transform 0.3s ease-in-out;
+}
+
+/* Hover Effects */
+.back-button:hover {
+  color: #a21dca;
+  /* box-shadow:#000; */
+  
+}
+
+.back-button:hover i {
+  transform: translateX(-8px);
+}
