@@ -471,7 +471,7 @@ async function processOrderFromLocalStorage() {
         console.error("No order data found in localStorage")
         return
       }
-      const response = await fetch("http://azalna-botique.vercel.app/api/process-order", {
+      const response = await fetch("https://azalna-botique.vercel.app/api/process-order", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
