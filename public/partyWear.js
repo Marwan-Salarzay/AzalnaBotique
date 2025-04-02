@@ -2,7 +2,7 @@ let items = [];
 
 async function fetchProducts() {
     try {
-        const response = await fetch('http://azalna-botique.vercel.app/api/partyWear');
+        const response = await fetch('https://azalna-botique.vercel.app/api/partyWear');
         if (!response.ok) throw new Error('Network response was not ok');
         items = await response.json();
         appendItems();
