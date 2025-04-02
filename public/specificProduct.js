@@ -40,7 +40,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   if (itemId) {
     try {
-      const response = await fetch(`http://localhost:3000/api/allProducts/${itemId}`)
+      const response = await fetch(`http://azalna-botique.vercel.app/api/allProducts/${itemId}`)
       if (!response.ok) {
         const errorData = await response.json()
         throw new Error(errorData.message || "Failed to fetch product")
