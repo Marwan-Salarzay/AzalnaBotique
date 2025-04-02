@@ -252,7 +252,7 @@ document.addEventListener('DOMContentLoaded', async function () {
         submitBtn.classList.add('loading');
 
         try {
-            const response = await fetch('http://azalna-botique.vercel.app/api/checkout', {
+            const response = await fetch('https://azalna-botique.vercel.app/api/checkout', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
