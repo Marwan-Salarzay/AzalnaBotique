@@ -21,7 +21,7 @@ dotenv.config()
 const app = express();
 const port = process.env.PORT;
 app.use(cors({
-  origin: ['https://your-vercel-domain.vercel.app'], // Or '*' for all domains (less secure)
+  origin: ['https://azalna-botique-fhsb.vercel.app'], // Or '*' for all domains (less secure)
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization'],
   credentials: true // if you're using cookies/auth headers
