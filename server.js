@@ -21,7 +21,7 @@ const port = process.env.PORT || 3000
 
 // Enable CORS for all routes
 app.use(cors({
-  origin: ['https://your-vercel-domain.vercel.app'], // Or '*' for all domains (less secure)
+  origin: ['https://azalna-botique.vercel.app'], // Or '*' for all domains (less secure)
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization'],
   credentials: true // if you're using cookies/auth headers
