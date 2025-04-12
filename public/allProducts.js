@@ -2,7 +2,7 @@ let items = []
 
 async function fetchProducts() {
   try {
-    const response = await fetch("/allProducts")
+    const response = await fetch("/api/allProducts")
     if (!response.ok) throw new Error("Network response was not ok")
     items = await response.json()
     appendItems()
