@@ -19,7 +19,12 @@ dotenv.config()
 
 const app = express();
 const port = process.env.PORT;
-app.options(cors());
+app.use(cors({
+  origin: 'https://azalna-botique.vercel.app/', // Replace with your actual frontend
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  credentials: true,
+}));
+
 
 
 app.use((req, res, next) => {
