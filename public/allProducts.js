@@ -2,7 +2,6 @@ let items = []
 
 async function fetchProducts() {
   try {
-    // Use relative URL instead of hardcoded localhost
     const response = await fetch("/api/allProducts")
     if (!response.ok) throw new Error("Network response was not ok")
     items = await response.json()
